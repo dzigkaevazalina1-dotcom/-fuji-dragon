@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#100a1b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Фуджи">
+<link rel="manifest" href="manifest.json">
+<title>Фуджи ♡ v14</title>
+<style>
+:root{--bg:#090711;--card:#21162fdd;--line:#ffffff16;--pink:#ff9edc;--lav:#bd98ff;--violet:#7948d5;--text:#fff8ff;--muted:#c7b8d1}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% 0,#452360,#160e24 38%,#08060c 82%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:93px 93px;opacity:.08}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:calc(13px + env(safe-area-inset-top)) 14px calc(90px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;margin:0 3px 10px}.brand{display:flex;gap:9px;align-items:center}.logo{font-size:29px;filter:drop-shadow(0 0 10px #d78cff)}h1{margin:0;font-size:25px}.sub,.tiny{color:var(--muted);font-size:11px}.bond{padding:8px 11px;border-radius:99px;background:#2a173d;border:1px solid #ffb3eb44;color:#ffc5ef;font-size:12px}
+.screen{display:none;animation:in .2s ease}.screen.active{display:block}@keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card{background:linear-gradient(145deg,#2a1b3be8,#130d1de8);border:1px solid var(--line);border-radius:24px;padding:15px;margin:11px 0;box-shadow:0 18px 45px #0006,inset 0 1px #ffffff0c}.title{font-size:18px;font-weight:800;margin-bottom:8px}
+.hero{text-align:center;overflow:hidden;padding:9px 7px 17px;position:relative}.hero:before{content:"";position:absolute;width:220px;height:220px;left:50%;top:8px;transform:translateX(-50%);border-radius:50%;background:#c778ff22;filter:blur(25px)}
+.dragon{position:relative;width:280px;height:255px;margin:auto;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 18px 20px #0008)}
+.dragon .body{background:linear-gradient(150deg,#fbffff,#d9f0ef 48%,#a98bd5);border-color:#f7ffff}
+.dragon .face{background:linear-gradient(145deg,#fff,#e7ddff 58%,#b8a0e8);border-color:#fff}
+.dragon .eye{background:radial-gradient(circle at 50% 30%,#fff 0 9%,#9ffff2 10% 25%,#7d45d6 28% 65%,#21112f 67%);box-shadow:0 0 18px #83ffe5}
+.dragon .wing{background:linear-gradient(145deg,#aef8e5aa,#8051b8);border-color:#c7fff3}
+.dragon .horn{background:linear-gradient(#fff,#9ee9d8);border-color:#efffff}
+.dragon .ear{background:linear-gradient(135deg,#e5ffff,#9270c2);border-color:#f6ffff}
+.dragon .gem{background:#9ffff0;box-shadow:0 0 17px #6fffe0}@keyframes float{50%{transform:translateY(-6px)}}.body{position:absolute;left:71px;top:97px;width:130px;height:117px;border-radius:55%;background:linear-gradient(150deg,#fffaff,#cbb7ed,#8761b2);border:2px solid #f5e8ff}.face{position:absolute;z-index:4;left:57px;top:29px;width:156px;height:124px;border-radius:48%;background:linear-gradient(145deg,#fffaff,#ddcbfa 72%,#a379c6);border:2px solid #f6eaff;box-shadow:0 0 30px #d99bff35}.eye{position:absolute;top:49px;width:29px;height:35px;border-radius:55%;background:radial-gradient(circle at 50% 35%,#fff 0 9%,#e0a8ff 10% 27%,#8139d5 29% 65%,#251137 67%);box-shadow:0 0 17px #bd63ff;animation:blink 6s infinite}.eye.l{left:28px}.eye.r{right:28px}@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}.ear{position:absolute;top:10px;width:57px;height:67px;background:linear-gradient(135deg,#dfc5ff,#8052ae);border:2px solid #f4e5ff;border-radius:80% 20% 70% 25%;z-index:2}.ear.l{left:45px;transform:rotate(-22deg)}.ear.r{right:45px;transform:scaleX(-1) rotate(-22deg)}.horn{position:absolute;top:0;width:33px;height:59px;background:linear-gradient(#fff,#b484e1);border:2px solid #eedcff;border-radius:80% 20% 70% 20%;z-index:5}.horn.l{left:79px;transform:rotate(-12deg)}.horn.r{right:79px;transform:scaleX(-1) rotate(-12deg)}.wing{position:absolute;top:96px;width:99px;height:130px;background:linear-gradient(145deg,#c09bff99,#634294);border:2px solid #d8bdff;border-radius:75% 20% 70% 15%;z-index:1}.wing.l{left:1px;transform:rotate(9deg)}.wing.r{right:1px;transform:scaleX(-1) rotate(9deg)}.gem{position:absolute;left:50%;top:16px;transform:translateX(-50%) rotate(45deg);width:17px;height:17px;background:#f0b5ff;border:2px solid white;box-shadow:0 0 15px #ff9eea;z-index:6}.blush{position:absolute;top:82px;width:25px;height:10px;background:#ff91c966;border-radius:50%}.blush.l{left:17px}.blush.r{right:17px}.smile{position:absolute;left:50%;bottom:17px;transform:translateX(-50%);width:27px;height:12px;border-bottom:3px solid #8d5ba8;border-radius:0 0 50% 50%}.tail{position:absolute;right:22px;bottom:0;width:90px;height:55px;border-bottom:14px solid #a37ad0;border-radius:0 0 90px 90px;transform:rotate(12deg)}.paw{position:absolute;bottom:-3px;font-size:30px;z-index:7}.paw.l{left:75px}.paw.r{right:75px}
+.speech{position:relative;z-index:10;display:inline-block;max-width:340px;background:#fff4ff;color:#43234f;border-radius:19px;padding:10px 14px;font-size:14px;font-weight:650;box-shadow:0 8px 25px #0005}.mood{margin-top:10px;color:#d7c8e4;font-size:12px}.mood b{color:#ffb5e9}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{background:#100a17aa;border:1px solid #fff1;border-radius:16px;padding:10px}.sh{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px}.bar{height:7px;background:#2c2138;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#7446cf,#ff9fdf);border-radius:99px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.action{border:1px solid #ffffff14;border-radius:17px;padding:12px 9px;text-align:left;background:linear-gradient(145deg,#3a2254,#21132f);color:white}.action:active{transform:scale(.98)}.action .ico{font-size:24px;float:left;margin-right:8px}.action b{font-size:13px}.action span{display:block;color:#c0aecb;font-size:10px;margin-top:2px}
+.nav{position:fixed;z-index:30;left:50%;bottom:0;transform:translateX(-50%);width:min(520px,100%);padding:8px 7px calc(8px + env(safe-area-inset-bottom));background:#0c0813ee;backdrop-filter:blur(18px);border-top:1px solid #fff1;display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:none;color:#8f839c;font-size:10px;padding:4px}.nav button.active{color:#ffb2e8}.nav i{display:block;font-style:normal;font-size:20px;margin-bottom:2px}
+.bigbtn{width:100%;border:0;border-radius:15px;padding:13px;margin:7px 0;color:white;font-weight:700;background:linear-gradient(180deg,#8a4cde,#6430aa);box-shadow:0 8px 20px #4e248b44}.bigbtn:active{transform:scale(.985)}
+.room{height:330px;border-radius:20px;position:relative;overflow:hidden;background:linear-gradient(#25143d,#110b1b);border:1px solid #fff1}.moon{position:absolute;right:25px;top:20px;width:48px;height:48px;border-radius:50%;background:#fff4d6;box-shadow:0 0 30px #fff1b966}.window{position:absolute;right:13px;top:11px;width:82px;height:105px;border:4px solid #73528c;border-radius:16px;background:#0d1025}.crystal{position:absolute;bottom:29px;width:25px;height:48px;background:linear-gradient(135deg,#ffb4ef,#8d56df);clip-path:polygon(50% 0,100% 28%,80% 100%,20% 100%,0 28%);filter:drop-shadow(0 0 9px #ba6dff)}.c1{left:20px}.c2{left:50px;height:35px}.c3{right:35px;height:60px}.bed{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:180px;height:65px;border-radius:50% 50% 18px 18px;background:#7551a4;border:3px solid #c8a8ff;box-shadow:0 15px 20px #0007}.rug{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:280px;height:55px;border-radius:50%;background:#392450}.roomdragon{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);font-size:65px;z-index:5;filter:drop-shadow(0 0 14px #d38cff)}.decor{position:absolute;bottom:45px;font-size:35px}.d1{left:20px}.d2{right:15px}.wardrobe{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wear{border:1px solid #fff1;background:#130d1c;border-radius:16px;padding:12px 5px;text-align:center;font-size:10px;color:#d9cbe3}.wear span{display:block;font-size:28px;margin-bottom:5px}.wear.selected{border-color:#ff9edc88;background:#321b40}
+.game{height:250px;border-radius:20px;background:radial-gradient(circle at 50% 45%,#5b3487,#150c23 67%);position:relative;overflow:hidden}.star{position:absolute;border:0;background:none;font-size:35px}.gameinfo{display:flex;justify-content:space-between;font-size:12px;color:#d8cbe4;margin:9px 2px}
+.chatbox{height:300px;overflow:auto}.msg{padding:10px 12px;border-radius:15px;margin:8px 0;font-size:13px;line-height:1.35}.fuji{background:#2b1a3d}.me{background:#63329a;margin-left:27px}.inputrow{display:flex;gap:8px;margin-top:8px}.inputrow input{flex:1;min-width:0;background:#0e0915;border:1px solid #fff2;color:white;border-radius:14px;padding:12px}.send{width:48px;border:0;border-radius:14px;background:#8a4cde;color:white}
+.itemgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.item{background:#120c19;border:1px solid #fff1;border-radius:15px;padding:12px 5px;text-align:center;font-size:10px;color:#cdbdda}.item span{display:block;font-size:28px;margin-bottom:5px}.item.selected{border-color:#ff9edc88;background:#321b40}
+.room .placed{position:absolute;z-index:8;font-size:36px;display:none;filter:drop-shadow(0 5px 6px #0006);animation:pop .25s ease}.room .placed.on{display:block}@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.lamp{right:30px;bottom:82px}.flower{left:27px;bottom:72px}.plant{right:78px;bottom:34px}.poster{left:20px;top:27px;font-size:27px}.toy{right:24px;bottom:26px}
+.toast{position:fixed;z-index:100;left:50%;bottom:93px;transform:translate(-50%,20px);opacity:0;background:#2b173d;border:1px solid #ffb4eb55;border-radius:15px;padding:11px 14px;font-size:12px;max-width:90%;text-align:center;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.wearable{position:absolute;z-index:12;display:none;pointer-events:none;filter:drop-shadow(0 3px 4px #0007)}
+.wearable.on{display:block}
+.w-crown{left:50%;top:1px;transform:translateX(-50%);font-size:38px}
+.w-bow{left:50%;top:116px;transform:translateX(-50%);font-size:30px}
+.w-glasses{left:50%;top:72px;transform:translateX(-50%);font-size:29px}
+.w-hat{left:50%;top:-7px;transform:translateX(-50%);font-size:38px}
+.w-moon{left:50%;top:128px;transform:translateX(-50%);font-size:23px}
+.w-shine{left:50%;top:37px;transform:translateX(-50%);font-size:46px;opacity:.72;animation:shine 1.3s infinite alternate}
+.w-wings{left:50%;top:92px;transform:translateX(-50%);font-size:54px;opacity:.75}
+.w-heart{left:50%;top:116px;transform:translateX(-50%);font-size:24px}
+.w-flower{left:50%;top:4px;transform:translateX(-50%);font-size:27px}
+@keyframes shine{to{transform:translateX(-50%) scale(1.13);opacity:1}}
+.dragon.variant-mint .face{background:linear-gradient(145deg,#fff,#d9fff5 60%,#9acfe1)}
+.dragon.variant-mint .body{background:linear-gradient(150deg,#fbffff,#c8eee8 48%,#8bb7ce)}
+.dragon.variant-mint .wing{background:linear-gradient(145deg,#9effe0aa,#547fb0)}
+.dragon.variant-lilac .face{background:linear-gradient(145deg,#fff,#eadcff 60%,#ad91d7)}
+.dragon.variant-lilac .body{background:linear-gradient(150deg,#fffaff,#d6c3f2 48%,#8769ad)}
+.dragon.variant-lilac .wing{background:linear-gradient(145deg,#d0a8ffaa,#7651a5)}
+.dragon.variant-night .face{background:linear-gradient(145deg,#eee7ff,#9e83c8 60%,#503a75)}
+.dragon.variant-night .body{background:linear-gradient(150deg,#dcd3ef,#8c77b0 48%,#493861)}
+.dragon.variant-night .wing{background:linear-gradient(145deg,#7d62a8aa,#30264c)}
+.palette{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.palette button{border:1px solid #fff2;border-radius:15px;padding:12px 5px;background:#120c19;color:#fff}.palette button.selected{border-color:#ff9edc88;background:#321b40}.swatch{width:34px;height:34px;border-radius:50%;margin:0 auto 5px;border:2px solid #fff6}
+
+/* ===== v8: настоящий чиби-дракон ===== */
+.dragon{width:310px;height:285px;position:relative;margin:auto;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 18px 22px #0009)}
+.dragon .body{position:absolute;left:91px;top:104px;width:128px;height:123px;border-radius:48% 52% 46% 50%;background:linear-gradient(150deg,#fbffff,#d9f0ef 45%,#9f82c8);border:2px solid #f8ffff;z-index:3;box-shadow:inset 0 -10px 22px #5b3c8422}
+.dragon .body:before{content:"";position:absolute;inset:15px 25px 12px;border-radius:48%;background:radial-gradient(circle at 50% 15%,#fff8 0 10%,transparent 11%),repeating-linear-gradient(0deg,#ffffff16 0 8px,#6f4a9910 9px 15px);opacity:.8}
+.belly{position:absolute;left:33px;top:32px;width:62px;height:77px;border-radius:48%;background:linear-gradient(180deg,#fff7ff,#d8c8ec);border:1px solid #fff8;z-index:2;overflow:hidden}
+.belly i{display:block;height:13px;margin:2px 8px;border-bottom:1px solid #8e70ad55;border-radius:50%}
+.dragon .head{position:absolute;left:53px;top:28px;width:205px;height:145px;z-index:7}
+.dragon .face{position:absolute;left:25px;top:12px;width:158px;height:124px;border-radius:47% 47% 43% 48%;background:linear-gradient(145deg,#fff,#e7ddff 54%,#b8a0e8);border:2px solid #fff;box-shadow:0 0 30px #d99bff40;z-index:8}
+.dragon .face:before{content:"";position:absolute;left:63px;bottom:-12px;width:60px;height:29px;background:linear-gradient(180deg,#e9dcfa,#b89bdb);border:2px solid #fff;border-top:0;border-radius:0 0 50% 50%;z-index:-1}
+.dragon .eye{position:absolute;top:48px;width:29px;height:35px;border-radius:55%;background:radial-gradient(circle at 50% 30%,#fff 0 9%,#9ffff2 10% 24%,#7d45d6 28% 65%,#21112f 67%);box-shadow:0 0 18px #83ffe5;animation:blink 6s infinite}
+.dragon .eye.l{left:28px}.dragon .eye.r{right:28px}
+.dragon .nostril{position:absolute;top:82px;width:6px;height:5px;border-radius:50%;background:#68477f;box-shadow:0 1px 0 #fff5}
+.dragon .nostril.l{left:69px}.dragon .nostril.r{right:69px}
+.dragon .fang{position:absolute;top:101px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:14px solid #fff9ff;filter:drop-shadow(0 2px 1px #6b4b80)}
+.dragon .fang.l{left:65px}.dragon .fang.r{right:65px}
+.dragon .ear{position:absolute;top:22px;width:52px;height:67px;background:linear-gradient(135deg,#dffff9,#7653a8);border:2px solid #f6ffff;border-radius:80% 20% 70% 25%;z-index:2}
+.dragon .ear.l{left:0;transform:rotate(-30deg)}.dragon .ear.r{right:0;transform:scaleX(-1) rotate(-30deg)}
+.dragon .horn{position:absolute;top:-1px;width:31px;height:63px;background:linear-gradient(180deg,#fff,#8edbcf 70%,#6b4b9c);border:2px solid #efffff;border-radius:80% 20% 70% 20%;z-index:9;box-shadow:0 4px 10px #5d3d7a44}
+.dragon .horn.l{left:58px;transform:rotate(-18deg)}.dragon .horn.r{right:58px;transform:scaleX(-1) rotate(-18deg)}
+.dragon .gem{position:absolute;left:50%;top:13px;transform:translateX(-50%) rotate(45deg);width:18px;height:18px;background:#9ffff0;border:2px solid white;box-shadow:0 0 18px #6fffe0;z-index:10}
+.dragon .wing{position:absolute;top:90px;width:122px;height:150px;background:linear-gradient(145deg,#aef8e5aa,#68439b);border:2px solid #d9fff5;border-radius:70% 15% 65% 10%;z-index:1;overflow:hidden;box-shadow:inset 0 0 20px #ffffff14}
+.dragon .wing.l{left:1px;transform:rotate(9deg)}.dragon .wing.r{right:1px;transform:scaleX(-1) rotate(9deg)}
+.dragon .wing:before{content:"";position:absolute;left:13px;bottom:13px;width:5px;height:126px;border-radius:9px;background:#f0fff966;transform:rotate(-24deg);box-shadow:30px 2px 0 #f0fff955,58px 10px 0 #f0fff944,82px 22px 0 #f0fff933}
+.dragon .wing i,.dragon .wing b,.dragon .wing em{position:absolute;left:18px;bottom:20px;height:3px;width:93px;border-radius:9px;background:#effffb77;transform-origin:left center}
+.dragon .wing i{transform:rotate(-29deg)}.dragon .wing b{transform:rotate(-7deg)}.dragon .wing em{transform:rotate(15deg)}
+.dragon .neck-spines{position:absolute;left:102px;top:96px;z-index:4}
+.dragon .neck-spines i{display:block;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:15px solid #8d68bd;transform:rotate(12deg);margin:-1px 0 -5px 0}
+.dragon .tail{position:absolute;right:5px;bottom:8px;width:122px;height:82px;border-bottom:17px solid #9d78c8;border-right:17px solid #9d78c8;border-radius:0 0 92px 90px;transform:rotate(8deg);z-index:2}
+.dragon .tail i,.dragon .tail b,.dragon .tail em{position:absolute;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:17px solid #7650a7;transform:rotate(20deg)}
+.dragon .tail i{right:0;bottom:15px}.dragon .tail b{right:14px;bottom:29px}.dragon .tail em{right:30px;bottom:40px}
+.dragon .leg{position:absolute;width:43px;height:70px;border-radius:45% 45% 30% 30%;background:linear-gradient(160deg,#f7ffff,#c8b7e9 60%,#8968ad);border:2px solid #f8ffff;z-index:5}
+.dragon .leg.front{top:181px}.dragon .leg.back{top:172px}
+.dragon .leg.front.l{left:75px;transform:rotate(7deg)}.dragon .leg.front.r{right:75px;transform:scaleX(-1) rotate(7deg)}
+.dragon .leg.back.l{left:102px;transform:rotate(-5deg);z-index:2}.dragon .leg.back.r{right:102px;transform:scaleX(-1) rotate(-5deg);z-index:2}
+.dragon .leg span{position:absolute;left:7px;right:7px;bottom:-6px;height:18px;border-radius:50%;background:#a17acb;border:2px solid #f8ffff}
+.dragon .leg i,.dragon .leg i:before,.dragon .leg i:after{position:absolute;bottom:-8px;width:0;height:0;border-top:9px solid #fff;border-left:4px solid transparent;border-right:4px solid transparent;content:""}
+.dragon .leg i{left:12px}.dragon .leg i:before{left:8px;bottom:0}.dragon .leg i:after{left:16px;bottom:0}
+.dragon .blush{position:absolute;top:82px;width:25px;height:10px;background:#ff91c966;border-radius:50%}
+.dragon .blush.l{left:17px}.dragon .blush.r{right:17px}
+.dragon .smile{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:27px;height:12px;border-bottom:3px solid #8d5ba8;border-radius:0 0 50% 50%}
+.cheek-scale{position:absolute;top:105px;width:15px;height:15px;border-radius:50%;background:#9a78c4;border:2px solid #fff8;z-index:9}
+.cheek-scale.l{left:16px}.cheek-scale.r{right:16px}
+.cheek-scale:after{content:"";position:absolute;width:9px;height:9px;left:3px;top:-9px;border-radius:50%;background:#9a78c4}
+.dragon.variant-mint .body{background:linear-gradient(150deg,#fbffff,#c8eee8 45%,#79a9bd)}
+.dragon.variant-mint .face{background:linear-gradient(145deg,#fff,#d9fff5 54%,#9acfe1)}
+.dragon.variant-mint .wing{background:linear-gradient(145deg,#9effe0aa,#4f789e)}
+.dragon.variant-mint .leg{background:linear-gradient(160deg,#f7ffff,#c2e8df 60%,#729bb0)}
+.dragon.variant-lilac .body{background:linear-gradient(150deg,#fffaff,#d6c3f2 45%,#8063a9)}
+.dragon.variant-lilac .face{background:linear-gradient(145deg,#fff,#eadcff 54%,#ad91d7)}
+.dragon.variant-lilac .wing{background:linear-gradient(145deg,#d0a8ffaa,#7651a5)}
+.dragon.variant-lilac .leg{background:linear-gradient(160deg,#fffaff,#d5c3ee 60%,#8267a9)}
+.dragon.variant-night .body{background:linear-gradient(150deg,#dcd3ef,#8c77b0 45%,#403355)}
+.dragon.variant-night .face{background:linear-gradient(145deg,#eee7ff,#9e83c8 54%,#503a75)}
+.dragon.variant-night .wing{background:linear-gradient(145deg,#7d62a8aa,#30264c)}
+.dragon.variant-night .leg{background:linear-gradient(160deg,#dcd3ef,#8573a7 60%,#433653)}
+.dragon .body,.dragon .head{animation:dragon-breathe 3.8s ease-in-out infinite}
+@keyframes dragon-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+
+
+/* ===== v10: 2D baby dragon inspired by the reference ===== */
+.dragon{
+  width:320px;height:300px;position:relative;margin:auto;
+  animation:dragonFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 16px 20px #0008);
+}
+.dragon .body{
+  position:absolute;left:92px;top:116px;width:136px;height:128px;
+  border-radius:48% 48% 43% 43%;
+  background:#252331;
+  border:3px solid #51475f;z-index:4;
+  box-shadow:inset 10px 10px 0 #3a3445,inset -12px -10px 0 #181620;
+}
+.dragon .body:before{
+  content:"";position:absolute;inset:12px 18px 8px;border-radius:45%;
+  background:radial-gradient(circle at 50% 20%,#4a4357 0 4%,transparent 5%) 0 0/24px 22px;
+  opacity:.75;
+}
+.belly{
+  position:absolute;left:38px;top:38px;width:59px;height:76px;border-radius:48%;
+  background:#3b3545;border:2px solid #62586c;overflow:hidden;z-index:2;
+}
+.belly i{display:block;height:14px;margin:0 6px;border-bottom:2px solid #51495d;border-radius:50%}
+.dragon .head{
+  position:absolute;left:51px;top:25px;width:218px;height:164px;z-index:8;
+}
+.dragon .face{
+  position:absolute;left:25px;top:20px;width:168px;height:132px;
+  border-radius:46% 46% 42% 42%;
+  background:#292632;border:3px solid #4e4659;
+  box-shadow:inset 12px 10px 0 #393343,inset -12px -10px 0 #1b1922;
+  z-index:8;
+}
+.dragon .face:before{
+  content:"";position:absolute;left:52px;bottom:-22px;width:64px;height:34px;
+  background:#24212d;border:3px solid #4e4659;border-top:0;
+  border-radius:0 0 50% 50%;z-index:-1;
+}
+.dragon .ear{
+  position:absolute;top:0;width:66px;height:88px;
+  background:#25222e;border:3px solid #51485b;
+  border-radius:75% 20% 65% 30%;z-index:2;
+  box-shadow:inset 10px 8px 0 #3b3544;
+}
+.dragon .ear:before{
+  content:"";position:absolute;inset:13px 12px 16px 16px;
+  background:#6d527e;clip-path:polygon(0 0,100% 50%,12% 100%);
+  opacity:.75;
+}
+.dragon .ear.l{left:-1px;transform:rotate(-17deg)}
+.dragon .ear.r{right:-1px;transform:scaleX(-1) rotate(-17deg)}
+.dragon .horn{
+  position:absolute;top:-4px;width:29px;height:61px;
+  background:#6e5a7f;border:3px solid #9581a1;
+  clip-path:polygon(50% 0,100% 100%,50% 82%,0 100%);
+  z-index:9;
+}
+.dragon .horn.l{left:59px;transform:rotate(-13deg)}
+.dragon .horn.r{right:59px;transform:scaleX(-1) rotate(-13deg)}
+.dragon .gem{
+  position:absolute;left:50%;top:12px;transform:translateX(-50%) rotate(45deg);
+  width:17px;height:17px;background:#b78cff;border:2px solid #eadbff;
+  box-shadow:0 0 16px #9d63ff;z-index:11;
+}
+.dragon .eye{
+  position:absolute;top:48px;width:38px;height:45px;border-radius:50%;
+  background:#6f43a8;border:3px solid #a57be0;
+  box-shadow:0 0 18px #9b5cff99;
+  overflow:hidden;animation:blink 6s infinite;
+}
+.dragon .eye:before{
+  content:"";position:absolute;left:9px;top:6px;width:12px;height:13px;
+  border-radius:50%;background:#fff;opacity:.95;
+}
+.dragon .eye:after{
+  content:"";position:absolute;left:17px;top:15px;width:6px;height:25px;
+  border-radius:50%;background:#17101e;
+}
+.dragon .eye.l{left:24px}.dragon .eye.r{right:24px}
+.dragon .nostril{
+  position:absolute;top:89px;width:7px;height:5px;border-radius:50%;background:#130f18;z-index:10;
+}
+.dragon .nostril.l{left:72px}.dragon .nostril.r{right:72px}
+.dragon .fang{
+  position:absolute;top:111px;width:0;height:0;
+  border-left:5px solid transparent;border-right:5px solid transparent;border-top:13px solid #f5efff;
+  z-index:10;
+}
+.dragon .fang.l{left:66px}.dragon .fang.r{right:66px}
+.dragon .smile{
+  position:absolute;left:50%;bottom:13px;transform:translateX(-50%);
+  width:30px;height:13px;border-bottom:3px solid #8d718f;border-radius:0 0 50% 50%;z-index:10;
+}
+.dragon .blush{position:absolute;top:86px;width:26px;height:10px;background:#9b4fa966;border-radius:50%;z-index:9}
+.dragon .blush.l{left:12px}.dragon .blush.r{right:12px}
+.dragon .wing{
+  position:absolute;top:103px;width:128px;height:143px;
+  background:#17151e;border:3px solid #4f465a;
+  clip-path:polygon(5% 92%,5% 22%,28% 38%,45% 8%,57% 36%,78% 13%,73% 48%,100% 31%,83% 72%,94% 96%,48% 84%);
+  z-index:2;overflow:visible;
+}
+.dragon .wing:before{
+  content:"";position:absolute;left:18px;top:23px;width:4px;height:108px;
+  background:#6b5a75;transform:rotate(-15deg);
+  box-shadow:28px 4px 0 #6b5a75,55px 10px 0 #6b5a75,79px 24px 0 #6b5a75;
+  opacity:.8;
+}
+.dragon .wing i,.dragon .wing b,.dragon .wing em{
+  position:absolute;left:18px;height:3px;width:91px;background:#7c6a84;border-radius:4px;
+  transform-origin:left center;opacity:.85;
+}
+.dragon .wing i{top:39px;transform:rotate(18deg)}
+.dragon .wing b{top:68px;transform:rotate(12deg)}
+.dragon .wing em{top:96px;transform:rotate(5deg)}
+.dragon .wing.l{left:2px;transform:rotate(2deg)}
+.dragon .wing.r{right:2px;transform:scaleX(-1) rotate(2deg)}
+.dragon .tail{
+  position:absolute;right:12px;bottom:17px;width:135px;height:82px;
+  border-bottom:20px solid #25222d;border-right:20px solid #25222d;
+  border-radius:0 0 100px 100px;transform:rotate(6deg);z-index:2;
+  filter:drop-shadow(0 0 0 #51485b);
+}
+.dragon .tail:before{
+  content:"";position:absolute;right:-18px;bottom:-18px;width:0;height:0;
+  border-left:17px solid transparent;border-right:17px solid transparent;border-bottom:28px solid #25222d;
+  transform:rotate(20deg);
+}
+.dragon .tail i,.dragon .tail b,.dragon .tail em{
+  position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;
+  border-bottom:16px solid #655172;transform:rotate(20deg);
+}
+.dragon .tail i{right:0;bottom:14px}.dragon .tail b{right:17px;bottom:27px}.dragon .tail em{right:35px;bottom:37px}
+.dragon .leg{
+  position:absolute;width:45px;height:72px;border-radius:45% 45% 30% 30%;
+  background:#24212c;border:3px solid #50475a;z-index:5;
+  box-shadow:inset 8px 7px 0 #383141;
+}
+.dragon .leg.front{top:187px}.dragon .leg.back{top:178px}
+.dragon .leg.front.l{left:75px;transform:rotate(5deg)}
+.dragon .leg.front.r{right:75px;transform:scaleX(-1) rotate(5deg)}
+.dragon .leg.back.l{left:104px;transform:rotate(-4deg);z-index:3}
+.dragon .leg.back.r{right:104px;transform:scaleX(-1) rotate(-4deg);z-index:3}
+.dragon .leg span{
+  position:absolute;left:5px;right:5px;bottom:-7px;height:19px;border-radius:50%;
+  background:#3b3445;border:3px solid #51485b;
+}
+.dragon .leg i,.dragon .leg i:before,.dragon .leg i:after{
+  position:absolute;bottom:-11px;width:0;height:0;border-top:11px solid #ddd3e7;
+  border-left:4px solid transparent;border-right:4px solid transparent;content:"";
+}
+.dragon .leg i{left:10px}.dragon .leg i:before{left:9px;bottom:0}.dragon .leg i:after{left:18px;bottom:0}
+.cheek-scale{
+  position:absolute;top:111px;width:14px;height:14px;border-radius:50%;
+  background:#4c3a54;border:2px solid #71627a;z-index:9;
+}
+.cheek-scale.l{left:11px}.cheek-scale.r{right:11px}
+.cheek-scale:after{content:"";position:absolute;width:9px;height:9px;left:3px;top:-8px;border-radius:50%;background:#4c3a54}
+.neck-spines{display:none}
+.dragon.variant-mint .face,.dragon.variant-mint .body,.dragon.variant-mint .leg{background:#26383a}
+.dragon.variant-mint .wing{background:#17272a}
+.dragon.variant-mint .ear{background:#223234}
+.dragon.variant-lilac .face,.dragon.variant-lilac .body,.dragon.variant-lilac .leg{background:#2b2434}
+.dragon.variant-lilac .wing{background:#1b1623}
+.dragon.variant-lilac .ear{background:#29202f}
+.dragon.variant-night .face,.dragon.variant-night .body,.dragon.variant-night .leg{background:#15151e}
+.dragon.variant-night .wing{background:#0d0c13}
+.dragon.variant-night .ear{background:#12121a}
+@keyframes dragonFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+
+/* ===== v10 developer fix: цельная голова без съехавшей челюсти ===== */
+.hero{padding-top:14px}
+.dragon{width:300px;height:275px}
+.dragon .head{left:51px;top:27px;width:198px;height:150px}
+.dragon .face{
+  left:20px;top:14px;width:158px;height:126px;
+  border-radius:46% 46% 49% 49%;
+  overflow:visible;
+}
+.dragon .face:before{
+  content:"";
+  position:absolute;
+  left:49px;bottom:8px;width:60px;height:24px;
+  background:linear-gradient(180deg,#282137,#191525);
+  border:0;border-radius:45% 45% 52% 52%;
+  box-shadow:inset 0 3px 0 #8d78a866;
+  z-index:1;
+}
+.dragon .eye{
+  top:45px;width:25px;height:31px;
+  background:radial-gradient(circle at 50% 27%,#fff 0 10%,#f1caff 11% 28%,#a04cff 30% 65%,#24102f 67%);
+  box-shadow:0 0 16px #9d52ff;
+}
+.dragon .eye.l{left:30px}.dragon .eye.r{right:30px}
+.dragon .nostril{top:83px;width:5px;height:4px;background:#110b19}
+.dragon .nostril.l{left:70px}.dragon .nostril.r{right:70px}
+.dragon .smile{
+  bottom:19px;width:28px;height:10px;
+  border-bottom:2px solid #a992bd;
+  z-index:3;
+}
+.dragon .fang{
+  top:98px;border-left-width:4px;border-right-width:4px;
+  border-top:11px solid #fff8ff;z-index:4;
+}
+.dragon .fang.l{left:64px}.dragon .fang.r{right:64px}
+.dragon .blush{top:80px;width:22px;height:8px;opacity:.65}
+.dragon .gem{top:15px;width:16px;height:16px}
+.dragon .horn{top:0;width:29px;height:58px}
+.dragon .horn.l{left:60px}.dragon .horn.r{right:60px}
+.dragon .ear{top:19px;width:50px;height:63px}
+.dragon .ear.l{left:1px}.dragon .ear.r{right:1px}
+.dragon .body{
+  left:88px;top:105px;width:124px;height:119px;
+  border-radius:50% 50% 45% 45%;
+}
+.dragon .belly{left:31px;top:31px;width:60px;height:75px}
+.dragon .wing{top:91px;width:116px;height:147px}
+.dragon .wing.l{left:0}.dragon .wing.r{right:0}
+.dragon .leg.front.l{left:73px}.dragon .leg.front.r{right:73px}
+.dragon .leg.back.l{left:101px}.dragon .leg.back.r{right:101px}
+.dragon .tail{right:7px;bottom:6px}
+.w-crown{transform:translateX(-50%) scale(.88)!important}
+
+
+/* v11: отдельная SVG-иллюстрация, не зависит от старых CSS-фигур */
+.dragon.fuji-illustration{position:relative;width:min(100%,360px);height:auto;aspect-ratio:360/340;margin:0 auto;animation:fujiFloat 4s ease-in-out infinite;filter:drop-shadow(0 12px 13px #09061588);overflow:visible}
+.fuji-svg{display:block;width:100%;height:100%;overflow:visible}
+.fuji-accessories{position:absolute;inset:0;pointer-events:none}
+.fuji-accessories .wearable{position:absolute;display:none;font-size:33px;z-index:20;line-height:1;filter:drop-shadow(0 3px 4px #0008)}
+.fuji-accessories .wearable.on{display:block}
+.fuji-accessories .w-crown{top:5%;left:50%;transform:translateX(-50%)!important;font-size:43px}
+.fuji-accessories .w-hat{top:6%;left:50%;transform:translateX(-50%)!important;font-size:46px}
+.fuji-accessories .w-glasses{top:34%;left:50%;transform:translateX(-50%)!important;font-size:65px}
+.fuji-accessories .w-bow{top:61%;left:50%;transform:translateX(-50%)!important}
+.fuji-accessories .w-moon{top:69%;left:50%;transform:translateX(-50%)!important}
+.fuji-accessories .w-shine{top:19%;right:7%;left:auto!important;transform:none!important}
+.fuji-accessories .w-wings{top:42%;right:0;left:auto!important;transform:none!important}
+.fuji-accessories .w-heart{top:73%;left:50%;transform:translateX(-50%)!important}
+.fuji-accessories .w-flower{top:19%;left:22%;transform:none!important}
+@keyframes fujiFloat{50%{transform:translateY(-5px)}}
+/* Три оттенка сохраняются без изменения фиолетовых глаз. */
+.fuji-illustration.variant-mint .fuji-svg{filter:hue-rotate(20deg) saturate(.8)}
+.fuji-illustration.variant-lilac .fuji-svg{filter:hue-rotate(-13deg) saturate(1.12)}
+.fuji-illustration.variant-night .fuji-svg{filter:brightness(.76) saturate(1.2)}
+
+/* v12: приветствие по центру, компактный блок состояния и действий */
+#home .speech{display:block;width:max-content;max-width:100%;margin:0 auto;text-align:center}
+#home .hero{padding-bottom:8px}
+#home .mood{margin-top:6px}
+#home .home-status{margin-top:6px;margin-bottom:6px;padding:12px 13px}
+#home .home-status .title{margin-bottom:6px}
+#home .home-status .stats{gap:6px}
+#home .home-status .stat{padding:8px 9px}
+#home .home-actions{margin-top:6px;padding:12px 13px}
+#home .home-actions .title{margin-bottom:6px}
+#home .home-actions .actions{gap:6px}
+#home .home-actions .action{padding:9px 8px}
+
+/* v13: поднимаем «Состояние» и «Быстрые действия», не перекрывая Фуджи */
+#home .dragon.fuji-illustration{width:min(100%,310px)}
+#home .hero{padding-top:2px;padding-bottom:5px;margin-top:5px;margin-bottom:5px}
+#home .speech{padding:8px 13px}
+#home .mood{margin-top:3px}
+#home .home-status{margin-top:3px;margin-bottom:5px}
+#home .home-actions{margin-top:5px}
+@media(max-width:375px){#home .dragon.fuji-illustration{width:min(100%,295px)}}
+
+/* v14: убираем пустоту между настроением и состоянием */
+#home .hero{margin:4px 0 5px;padding:5px 8px 9px;overflow:hidden}
+#home .dragon.fuji-illustration{width:min(100%,265px);height:auto;aspect-ratio:360/340;margin:0 auto 0}
+#home .speech{margin:0 auto;padding:8px 12px;line-height:1.3}
+#home .mood{margin:5px 0 0;line-height:1.4}
+#home .home-status{margin:5px 0 6px;padding:11px 12px}
+#home .home-actions{margin:6px 0;padding:11px 12px}
+#home .home-status .title,#home .home-actions .title{margin-bottom:6px}
+@media(max-width:375px){#home .dragon.fuji-illustration{width:min(100%,245px)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">🐉</div><div><h1>Фуджи ♡</h1><div class="sub">твой маленький дракончик · версия 14</div></div></div><div class="bond" id="bond">♡ 18%</div></header>
+
+<section id="home" class="screen active">
+<div class="card hero"><div class="dragon fuji-illustration" role="img" aria-label="Пушистый тёмный дракончик с фиолетовыми глазами, аккуратной мордочкой и крыльями">
+<svg class="fuji-svg" viewBox="0 0 360 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+ <radialGradient id="fur" cx="42%" cy="27%" r="80%"><stop stop-color="#52536b"/><stop offset=".5" stop-color="#2d2d41"/><stop offset="1" stop-color="#151524"/></radialGradient>
+ <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#59506e"/><stop offset="1" stop-color="#19182d"/></linearGradient>
+ <radialGradient id="iris"><stop stop-color="#160b28"/><stop offset=".48" stop-color="#7e36df"/><stop offset=".82" stop-color="#bd79ff"/><stop offset="1" stop-color="#3e1c68"/></radialGradient>
+ <linearGradient id="muzzle" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#626176"/><stop offset="1" stop-color="#333244"/></linearGradient>
+ <filter id="softglow"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<!-- хвост и крылья позади тела -->
+<path d="M236 255 C286 266 308 250 329 276 C309 264 295 297 253 287 L224 277Z" fill="#202033" stroke="#4c4a62" stroke-width="3"/>
+<path d="M314 276 L339 267 L328 289Z" fill="#3c3857"/>
+<path d="M139 160 Q69 99 23 89 Q43 139 18 205 Q67 187 110 229Z" fill="url(#wing)" stroke="#74708b" stroke-width="3"/>
+<path d="M221 160 Q291 99 337 89 Q317 139 342 205 Q293 187 250 229Z" fill="url(#wing)" stroke="#74708b" stroke-width="3"/>
+<g fill="none" stroke="#8b819f" stroke-width="2.4" opacity=".7"><path d="M133 174 Q77 129 23 89 M129 189 Q78 161 18 205 M227 174 Q283 129 337 89 M231 189 Q282 161 342 205"/></g>
+<!-- задние лапки -->
+<ellipse cx="124" cy="281" rx="39" ry="28" fill="#242435" stroke="#454357" stroke-width="3"/>
+<ellipse cx="236" cy="281" rx="39" ry="28" fill="#242435" stroke="#454357" stroke-width="3"/>
+<!-- тело и пушистая грудка -->
+<path d="M106 184 Q113 151 180 154 Q247 151 254 184 Q275 236 252 280 Q221 311 180 310 Q139 311 108 280 Q85 236 106 184Z" fill="url(#fur)" stroke="#565368" stroke-width="3"/>
+<path d="M160 198 Q180 210 200 198 Q211 233 201 274 Q180 288 159 274 Q149 233 160 198Z" fill="#77778a" opacity=".32"/>
+<g fill="#777489" opacity=".55"><path d="M151 194 l-11 21 17-9 4 22 12-20Z"/><path d="M209 194 l11 21-17-9-4 22-12-20Z"/><path d="M166 249 l-8 15 18-5 5 17 8-17 15 4-8-16Z"/></g>
+<!-- лапки спереди -->
+<path d="M126 218 Q108 228 113 276 Q116 298 143 295 Q163 293 157 276 L153 235Z" fill="url(#fur)" stroke="#575268" stroke-width="3"/>
+<path d="M234 218 Q252 228 247 276 Q244 298 217 295 Q197 293 203 276 L207 235Z" fill="url(#fur)" stroke="#575268" stroke-width="3"/>
+<g fill="#c5bdd7"><path d="M120 290 l5 10 5-10 M133 292 l5 10 5-10 M146 289 l5 9 5-11 M204 289 l5 9 5-11 M217 292 l5 10 5-10 M230 290 l5 10 5-10"/></g>
+<!-- пушистые ушки -->
+<path d="M115 107 Q72 80 61 33 Q111 40 151 86Z" fill="#252536" stroke="#68667d" stroke-width="4"/>
+<path d="M245 107 Q288 80 299 33 Q249 40 209 86Z" fill="#252536" stroke="#68667d" stroke-width="4"/>
+<path d="M120 98 Q88 76 78 49 Q112 59 137 92Z M240 98 Q272 76 282 49 Q248 59 223 92Z" fill="#62586e"/>
+<!-- лобный хохолок -->
+<path d="M131 82 Q132 45 147 25 Q153 48 159 57 Q168 26 181 17 Q186 45 194 55 Q207 30 219 27 Q218 59 232 85Z" fill="#28293b" stroke="#656276" stroke-width="3"/>
+<!-- цельная голова, единая линия нижней челюсти -->
+<path d="M102 95 Q116 64 180 62 Q244 64 258 95 Q279 136 261 178 Q247 210 214 220 Q180 230 146 220 Q113 210 99 178 Q81 136 102 95Z" fill="url(#fur)" stroke="#69677d" stroke-width="3.5"/>
+<!-- пушистые щёки -->
+<path d="M108 151 l-24 1 18 16-18 12 27 0 2 21 21-13Z M252 151 l24 1-18 16 18 12-27 0-2 21-21-13Z" fill="#343346" stroke="#575369" stroke-width="2"/>
+<!-- мягкая мордочка с цельным подбородком -->
+<path d="M134 163 Q149 146 180 151 Q211 146 226 163 Q245 184 224 200 Q205 215 180 216 Q155 215 136 200 Q115 184 134 163Z" fill="url(#muzzle)" stroke="#767184" stroke-width="2.5"/>
+<!-- глазные блики и фиолетовые радужки -->
+<ellipse cx="137" cy="135" rx="27" ry="33" fill="#120f1f" stroke="#74617e" stroke-width="2.5"/>
+<ellipse cx="223" cy="135" rx="27" ry="33" fill="#120f1f" stroke="#74617e" stroke-width="2.5"/>
+<ellipse cx="137" cy="137" rx="21" ry="27" fill="url(#iris)"/>
+<ellipse cx="223" cy="137" rx="21" ry="27" fill="url(#iris)"/>
+<ellipse cx="137" cy="138" rx="10" ry="20" fill="#190d2c"/>
+<ellipse cx="223" cy="138" rx="10" ry="20" fill="#190d2c"/>
+<ellipse cx="130" cy="125" rx="7" ry="9" fill="#fff"/><ellipse cx="216" cy="125" rx="7" ry="9" fill="#fff"/>
+<circle cx="145" cy="149" r="3" fill="#e3c7ff"/><circle cx="231" cy="149" r="3" fill="#e3c7ff"/>
+<!-- ноздри и маленькая улыбка: всё внутри мордочки -->
+<ellipse cx="169" cy="176" rx="3.4" ry="2.5" fill="#1a1724"/>
+<ellipse cx="191" cy="176" rx="3.4" ry="2.5" fill="#1a1724"/>
+<path d="M164 192 Q180 201 196 192" fill="none" stroke="#211a2b" stroke-width="2.7" stroke-linecap="round"/>
+<path d="M161 190 l5 10 5-8 M189 192 l5 8 5-10" fill="#eae7f5" stroke="#b3abc8" stroke-width=".6"/>
+<g fill="#8a829d" opacity=".45"><path d="M118 173 l-13 8 14-1 0 10 10-15Z"/><path d="M242 173 l13 8-14-1 0 10-10-15Z"/></g>
+</svg>
+<div class="fuji-accessories">
+<div class="wearable w-crown" id="wearCrown">👑</div><div class="wearable w-bow" id="wearBow">🎀</div><div class="wearable w-glasses" id="wearGlasses">🕶️</div><div class="wearable w-hat" id="wearHat">🧢</div><div class="wearable w-moon" id="wearMoon">🌙</div><div class="wearable w-shine" id="wearShine">✨</div><div class="wearable w-wings" id="wearWings">🪽</div><div class="wearable w-heart" id="wearHeart">💜</div><div class="wearable w-flower" id="wearFlower">🌸</div>
+</div></div><div class="speech" id="speech">Привет, солнышко! 💜</div><div class="mood">Настроение: <b id="mood">Счастливый</b> · <span id="clock"></span></div></div>
+<div class="card home-status"><div class="title">Состояние</div><div class="stats" id="stats"></div></div>
+<div class="card home-actions"><div class="title">💜 Быстрые действия</div><div class="actions"><button class="action" onclick="feed()"><span class="ico">🍖</span><b>Кормить</b><span>Вкусняшка</span></button><button class="action" onclick="pet()"><span class="ico">🐾</span><b>Гладить</b><span>Нежность</span></button><button class="action" onclick="clean()"><span class="ico">🫧</span><b>Искупать</b><span>Водные процедуры</span></button><button class="action" onclick="play()"><span class="ico">✨</span><b>Играть</b><span>Веселиться</span></button><button class="action" onclick="sleepToggle()"><span class="ico">🌙</span><b>Сон</b><span>Отдыхать</span></button></div></div>
+</section>
+
+<section id="chat" class="screen"><div class="card"><div class="title">💬 Разговор с Фуджи</div><div class="tiny">Фуджи отвечает по-разному в зависимости от настроения.</div><div class="chatbox" id="messages"></div><div class="inputrow"><input id="input" placeholder="Напиши ему..." autocomplete="off"><button class="send" onclick="sendChat()">➤</button></div></div><div class="card"><div class="title">🧠 Его воспоминания</div><div id="memory"></div></div></section>
+
+<section id="room" class="screen"><div class="card"><div class="title">🏠 Комната Фуджи</div><div class="room"><div class="moon"></div><div class="window"></div><div class="crystal c1"></div><div class="crystal c2"></div><div class="crystal c3"></div><div class="rug"></div><div class="bed"></div><div class="roomdragon" id="roomdragon">🐉</div><div class="decor d1">🌿</div><div class="decor d2">🪴</div><div id="lampPlaced" class="placed lamp">🏮</div><div id="flowerPlaced" class="placed flower">🌷</div><div id="plantPlaced" class="placed plant">🪴</div><div id="posterPlaced" class="placed poster">🌙</div><div id="toyPlaced" class="placed toy">🧸</div></div><div class="tiny" style="margin-top:8px">Нажми на предмет — он появится в комнате. Нажми ещё раз — убери его.</div></div><div class="card"><div class="title">✨ Украшения комнаты</div><div class="itemgrid"><div class="item" id="itemLamp" onclick="toggleRoom('lamp','itemLamp')"><span>🏮</span>Фонарик</div><div class="item" id="itemFlower" onclick="toggleRoom('flower','itemFlower')"><span>🌷</span>Цветочек</div><div class="item" id="itemPlant" onclick="toggleRoom('plant','itemPlant')"><span>🪴</span>Растение</div><div class="item" id="itemPoster" onclick="toggleRoom('poster','itemPoster')"><span>🌙</span>Постер</div><div class="item" id="itemToy" onclick="toggleRoom('toy','itemToy')"><span>🧸</span>Игрушка</div><div class="item" onclick="toast('Кристаллы уже сияют 💎')"><span>💎</span>Кристаллы</div></div></div></section>
+
+<section id="style" class="screen"><div class="card"><div class="title">👑 Гардероб Фуджи</div><div class="tiny">Выбирай аксессуар — он сохранится.</div><div class="wardrobe"><div class="wear" onclick="wear('👑','Корона',this)"><span>👑</span>Корона</div><div class="wear" onclick="wear('🎀','Бантик',this)"><span>🎀</span>Бантик</div><div class="wear" onclick="wear('🕶️','Очки',this)"><span>🕶️</span>Очки</div><div class="wear" onclick="wear('🧢','Шапочка',this)"><span>🧢</span>Шапочка</div><div class="wear" onclick="wear('🌙','Лунный амулет',this)"><span>🌙</span>Амулет</div><div class="wear" onclick="wear('✨','Сияние',this)"><span>✨</span>Сияние</div><div class="wear" onclick="wear('🪽','Небесный стиль',this)"><span>🪽</span>Крылья</div><div class="wear" onclick="wear('💜','Сердечко',this)"><span>💜</span>Сердечко</div><div class="wear" onclick="wear('🌸','Цветочек',this)"><span>🌸</span>Цветочек</div></div><div id="worn" class="tiny" style="text-align:center;margin-top:12px"></div></div>
+<div class="card"><div class="title">🎨 Внешность Фуджи</div><div class="tiny">Выбирай цвет — Фуджи переоденется прямо перед тобой.</div><div class="palette">
+<button onclick="setVariant('mint',this)"><div class="swatch" style="background:linear-gradient(135deg,#eaffff,#83d9cf,#7b5aa8)"></div>Мятный</button>
+<button onclick="setVariant('lilac',this)"><div class="swatch" style="background:linear-gradient(135deg,#fff,#d8bdf7,#8663b4)"></div>Лавандовый</button>
+<button onclick="setVariant('night',this)"><div class="swatch" style="background:linear-gradient(135deg,#ddd5f0,#8d75b0,#3a2b52)"></div>Ночной</button>
+</div></div>
+<div class="card"><div class="title">🐣 Рост Фуджи</div><div class="tiny">Связь растёт вместе с вашими приключениями.</div><div class="bar" style="margin-top:10px"><div class="fill" id="growth" style="width:18%"></div></div><div id="growthText" class="tiny" style="text-align:center;margin-top:7px"></div></div></section>
+
+<section id="games" class="screen"><div class="card"><div class="title">⭐ Поймай звёздочку</div><div class="game" id="game"><button class="star" id="star" onclick="catchStar()">⭐</button></div><div class="gameinfo"><span>Счёт: <b id="score">0</b></span><span>Рекорд: <b id="best">0</b></span></div><button class="bigbtn" onclick="newGame()">✨ Новая игра</button></div></section>
+
+<section id="more" class="screen"><div class="card"><div class="title">🎒 Коллекция</div><div class="itemgrid"><div class="item"><span>💎</span>Кристаллы</div><div class="item"><span>🎁</span>Подарки</div><div class="item"><span>🌙</span>Амулеты</div></div></div><div class="card"><div class="title">📖 Ваши моменты</div><div id="history"></div></div><div class="card"><div class="title">⚙️ Настройки</div><button class="bigbtn" onclick="resetData()">↻ Начать заново</button></div></section>
+</div>
+
+<nav class="nav"><button class="active" onclick="show('home',this)"><i>🏠</i>Дом</button><button onclick="show('chat',this)"><i>💬</i>Чат</button><button onclick="show('room',this)"><i>🛏️</i>Комната</button><button onclick="show('style',this)"><i>👑</i>Стиль</button><button onclick="show('games',this)"><i>🎮</i>Игры</button></nav>
+<div class="toast" id="toast"></div>
+<script>
+var DEF={h:82,e:78,m:90,c:88,b:18,sleep:false,stars:0,best:0,worn:"",wearKey:"",variant:"mint",room:{lamp:false,flower:false,plant:false,poster:false,toy:false},memory:["Фуджи знает, что ты его любишь 💜"],history:["Фуджи появился у тебя 🐉💜"]};
+var s=load();
+function load(){try{var raw=localStorage.getItem('fuji_v11')||localStorage.getItem('fuji_v10')||localStorage.getItem('fuji_v9')||localStorage.getItem('fuji_v8');var x=raw?JSON.parse(raw):null;if(!x||typeof x!=='object')return JSON.parse(JSON.stringify(DEF));var z=Object.assign({},DEF,x);z.room=Object.assign({},DEF.room,x.room||{});return z}catch(e){return JSON.parse(JSON.stringify(DEF))}}
+function save(){try{localStorage.setItem('fuji_v11',JSON.stringify(s))}catch(e){}render()}
+function clamp(x){return Math.max(0,Math.min(100,Number(x)||0))}
+function toast(t){var e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.remove('show'),1900)}
+function say(t){document.getElementById('speech').textContent=t;toast(t)}
+function hist(t){s.history.unshift(new Date().toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})+' — '+t);s.history=s.history.slice(0,9)}
+function feed(){s.h=clamp(s.h+18);s.m=clamp(s.m+5);s.b=clamp(s.b+2);hist('Фуджи получил вкусняшку 🍖');say('Ммм! Вкусняшка! Ты знаешь, как порадовать дракончика 🥺💜');save()}
+function pet(){s.m=clamp(s.m+9);s.b=clamp(s.b+3);say('Мр-р… Я обожаю твои поглаживания 🥺💜');save()}
+function play(){if(s.sleep){say('Зев… Я сейчас сплю. Разбудишь меня? 💤');return}s.e=clamp(s.e-10);s.m=clamp(s.m+13);s.b=clamp(s.b+3);hist('Вы играли вместе ✨');say('Урааа! Ещё раз! 😈✨');save()}
+function sleepToggle(){s.sleep=!s.sleep;if(s.sleep){hist('Фуджи лёг спать 🌙');say('Зев… спокойной ночи, солнышко. Я рядом 💤🌙')}else{s.e=clamp(s.e+30);s.m=clamp(s.m+6);hist('Фуджи проснулся ☀️');say('Доброе утро! Я выспался! 🐉💜')}save()}
+function clean(){s.c=clamp(s.c+28);s.m=clamp(s.m+3);s.b=clamp(s.b+1);hist('Фуджи искупался 🫧');say('Блестю! ✨🫧');save()}
+function wear(icon,name,el){
+  var map={"Корона":"crown","Бантик":"bow","Очки":"glasses","Шапочка":"hat","Лунный амулет":"moon","Сияние":"shine","Небесный стиль":"wings","Сердечко":"heart","Цветочек":"flower"};
+  var key=map[name]||"";
+  s.worn=icon+" "+name;s.wearKey=key;
+  document.querySelectorAll('.wear').forEach(function(x){x.classList.remove('selected')});el.classList.add('selected');
+  applyWear();hist('Фуджи надел: '+name);say('Ну как? Мне идёт '+name+'? 🥺✨');save()
+}
+function applyWear(){
+  ['crown','bow','glasses','hat','moon','shine','wings','heart','flower'].forEach(function(k){
+    var e=document.getElementById('wear'+k.charAt(0).toUpperCase()+k.slice(1));
+    if(e)e.classList.toggle('on',s.wearKey===k)
+  });
+}
+function setVariant(v,el){
+  s.variant=v;
+  var d=document.querySelector('.dragon');
+  d.classList.remove('variant-mint','variant-lilac','variant-night');
+  d.classList.add('variant-'+v);
+  document.querySelectorAll('.palette button').forEach(function(x){x.classList.remove('selected')});el.classList.add('selected');
+  var names={mint:'мятный',lilac:'лавандовый',night:'ночной'};
+  hist('Фуджи сменил цвет: '+names[v]);say('Ого! Я теперь '+names[v]+'! ✨🐉');save()
+}
+function toggleRoom(key,id){s.room[key]=!s.room[key];var e=document.getElementById(key+'Placed');if(e)e.classList.toggle('on',s.room[key]);var c=document.getElementById(id);if(c)c.classList.toggle('selected',s.room[key]);toast(s.room[key]?'Предмет появился в комнате ✨':'Предмет убран');save()}
+function render(){document.getElementById('bond').textContent='♡ '+s.b+'%';var mood=s.sleep?'Сонный':s.m>85?'Счастливый':s.m>65?'Радостный':s.m>40?'Спокойный':'Грустноватый';document.getElementById('mood').textContent=mood;document.getElementById('clock').textContent=new Date().getHours()>=21||new Date().getHours()<7?'ночное время 🌙':'дневное время ☀️';var a=[['🍖','Сытость',s.h],['⚡','Энергия',s.e],['😊','Настроение',s.m],['✨','Чистота',s.c]];document.getElementById('stats').innerHTML=a.map(x=>'<div class="stat"><div class="sh"><span>'+x[0]+' '+x[1]+'</span><span>'+x[2]+'%</span></div><div class="bar"><div class="fill" style="width:'+x[2]+'%"></div></div></div>').join('');document.getElementById('score').textContent=s.stars;document.getElementById('best').textContent=s.best;document.getElementById('memory').innerHTML=s.memory.map(x=>'<div class="tiny" style="padding:8px 0">♡ '+x+'</div>').join('');document.getElementById('history').innerHTML=s.history.map(x=>'<div class="tiny" style="padding:8px 0;border-bottom:1px solid #fff1">'+x+'</div>').join('');document.getElementById('worn').textContent=s.worn?'Сейчас на Фуджи: '+s.worn:'Сейчас Фуджи без аксессуара';
+applyWear();
+var d=document.querySelector('.dragon');d.classList.remove('variant-mint','variant-lilac','variant-night');d.classList.add('variant-'+(s.variant||'mint'));
+document.querySelectorAll('.palette button').forEach(function(x){x.classList.remove('selected')});
+['lamp','flower','plant','poster','toy'].forEach(function(k){var e=document.getElementById(k+'Placed'),c=document.getElementById('item'+k.charAt(0).toUpperCase()+k.slice(1));if(e)e.classList.toggle('on',!!s.room[k]);if(c)c.classList.toggle('selected',!!s.room[k])});document.getElementById('growth').style.width=s.b+'%';document.getElementById('growthText').textContent=s.b<35?'Малыш-дракончик 🐣':s.b<70?'Подрастающий дракончик 🐉':'Сильный взрослый дракон 🐲'}
+function show(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');if(id==='games')moveStar()}
+function moveStar(){var e=document.getElementById('star');e.style.left=(8+Math.random()*78)+'%';e.style.top=(10+Math.random()*72)+'%'}
+function newGame(){s.stars=0;save();moveStar();toast('Поймай звёздочку! ⭐')}
+function catchStar(){s.stars++;s.best=Math.max(s.best,s.stars);s.m=clamp(s.m+1);save();moveStar();toast('Поймала! ⭐ '+s.stars)}
+function sendChat(){var i=document.getElementById('input'),t=i.value.trim();if(!t)return;i.value='';var b=document.getElementById('messages');b.innerHTML+='<div class="msg me">'+esc(t)+'</div>';var l=t.toLowerCase(),r='Я рядом и внимательно слушаю тебя 🐉💜';if(/груст|плохо|тяжело|устал/.test(l))r='Иди сюда… 💜 Расскажи мне всё. Я послушаю.';else if(/люблю|любишь/.test(l))r='Я тоже тебя очень люблю! Ты мой самый важный человек 🥺💜';else if(/привет/.test(l))r='Привееет! Я соскучился! ✨';else if(/мечт|хочу/.test(l))r='Расскажи о своей мечте. Я хочу знать о ней 🌙';else if(/игр/.test(l))r='Играем! Я уже машу крылышками! 😈✨';b.innerHTML+='<div class="msg fuji">'+r+'</div>';b.scrollTop=b.scrollHeight;s.b=clamp(s.b+1);if(/меня зовут|я люблю|мой любим/.test(l)){s.memory.unshift('Ты рассказала: '+t);s.memory=s.memory.slice(0,6)}save()}
+function esc(x){return x.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function resetData(){if(confirm('Начать отношения с Фуджи заново?')){localStorage.removeItem('fuji_v11');location.reload()}}
+document.getElementById('messages').innerHTML='<div class="msg fuji">Привет, солнышко! 💜 Я Фуджи. Я здесь.</div>';render();moveStar();
+</script>
+</body></html>
